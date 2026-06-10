@@ -1,0 +1,86 @@
+{
+  "codigos_acceso": {
+    "evento_001": {
+      "1A2B": {
+        "activo": true,
+        "color": "#F06292",
+        "dispositivo": "samsung SM-A145M [Placa: exynos3830] [Hardware: s5e3830] (AP3A.2)",
+        "nombre": "Elmer Cusipuma"
+      },
+      "2B3C": {
+        "activo": true,
+        "color": "#E57373",
+        "dispositivo": "google sdk_gphone16k_x86_64 [Placa: goldfish_x86_64] [Hardware: ranchu] (CP21.2)",
+        "nombre": "Luis Fernando calle sdfdsfds"
+      }
+    },
+    "evento_002": {
+      "AUDY-1A2B": "android_id_a1b2c3d4e5f6",
+      "AUDY-7X9P": true,
+      "AUDY-9Z8Y": true
+    },
+    "evento_003": {
+      "1A2B": {
+        "activo": false,
+        "color": "#4FC3F7",
+        "dispositivo": "samsung SM-A145M [Placa: exynos3830] [Hardware: s5e3830] (AP3A.2)",
+        "nombre": "elmer cusipuma condo daddss"
+      }
+    }
+  },
+  "comentarios": {
+    "evento_001": {
+      "-OubuX_U4fbNkgsMyfV0": {
+        "codigo": "1A2B",
+        "color": "#F06292",
+        "mensaje": "test",
+        "nombre": "Elmer",
+        "timestamp": 1780933600597
+      }
+    }
+  },
+  "eventos": {
+    "evento_001": {
+      "afiche_horizontal": "https://res.cloudinary.com/dk5zagjrk/image/upload/v1780891031/5fd635fa-7842-4937-9c1e-ca1dce645302.png",
+      "afiche_vertical": "https://res.cloudinary.com/dk5zagjrk/image/upload/v1780890818/imagen_tczpbe.jpg",
+      "fecha_hora": "2026-06-07T14:00:00Z",
+      "fin_stream": true,
+      "modo": "exclusivo",
+      "tipo": "Concierto virtual",
+      "tipo_stream": "mediamtx",
+      "titulo": "Ministerio JAYAMARA desde Oruro",
+      "url_stream": "http://5.78.181.197:8888/camara1/index.m3u8"
+    },
+    "evento_002": {
+      "afiche_horizontal": "https://res.cloudinary.com/tu-nube/image/upload/v1/cartelera_teatro.jpg",
+      "afiche_vertical": "https://res.cloudinary.com/tu-nube/image/upload/v1/inicio_teatro.jpg",
+      "fecha_hora": "2026-06-07T18:00:00Z",
+      "fin_stream": true,
+      "modo": "libre",
+      "redes_sociales": {
+        "facebook": "https://www.facebook.com/100083420324560/videos/1743769243463599",
+        "tiktok": "",
+        "youtube": "https://www.youtube.com/live/X4VbdwhkE10?si=EDLHHRQiKgLBcEwr"
+      },
+      "tipo": "Obra de Teatro",
+      "tipo_stream": "youtube",
+      "titulo": "Teatro en Vivo: Compañía El Telón",
+      "url_stream": "https://www.youtube.com/live/X4VbdwhkE10?si=EDLHHRQiKgLBcEwr"
+    },
+    "evento_003": {
+      "afiche_horizontal": "https://res.cloudinary.com/dk5zagjrk/image/upload/f_auto/q_auto/v1780955690/ChatGPT_Image_Jun_9_2026_10_13_32_PM_o6d968.png",
+      "afiche_vertical": "https://res.cloudinary.com/dk5zagjrk/image/upload/f_auto/q_auto/v1780955689/ChatGPT_Image_Jun_9_2026_07_37_16_PM_ethfg4.png",
+      "fecha_hora": "2026-06-13T19:00:00Z",
+      "fin_stream": false,
+      "modo": "libre",
+      "redes_sociales": {
+        "facebook": "",
+        "tiktok": "",
+        "youtube": ""
+      },
+      "tipo": "Programa: Sumaj Takiy",
+      "titulo": "Ministerio: Camino a la vida eterna",
+      "url_stream": ""
+    }
+  }
+}

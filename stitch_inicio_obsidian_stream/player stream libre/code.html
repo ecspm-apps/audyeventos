@@ -1,0 +1,279 @@
+<!DOCTYPE html><html class="dark" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ffb595",
+                        "on-primary-fixed": "#001a41",
+                        "tertiary-fixed-dim": "#ffb595",
+                        "on-tertiary": "#571e00",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary-fixed-variant": "#5700c9",
+                        "on-tertiary-fixed-variant": "#7c2e00",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface": "#e5e2e1",
+                        "secondary-fixed": "#e9ddff",
+                        "outline": "#8b90a0",
+                        "secondary": "#d1bcff",
+                        "surface-variant": "#353534",
+                        "tertiary-fixed": "#ffdbcc",
+                        "surface": "#131313",
+                        "inverse-on-surface": "#313030",
+                        "inverse-primary": "#005bc1",
+                        "surface-dim": "#131313",
+                        "on-secondary-container": "#ddcdff",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#d1bcff",
+                        "background": "#131313",
+                        "secondary-container": "#7000ff",
+                        "on-background": "#e5e2e1",
+                        "on-secondary-fixed": "#23005b",
+                        "outline-variant": "#414755",
+                        "primary": "#adc6ff",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#4c1a00",
+                        "surface-container-highest": "#353534",
+                        "surface-bright": "#393939",
+                        "on-primary": "#002e69",
+                        "on-tertiary-fixed": "#351000",
+                        "on-primary-container": "#00285c",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-container": "#4b8eff",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary-container": "#ef6719",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#004493",
+                        "error": "#ffb4ab",
+                        "on-surface-variant": "#c1c6d7",
+                        "surface-container": "#201f1f",
+                        "on-secondary": "#3c0090",
+                        "primary-fixed-dim": "#adc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "margin-mobile": "20px",
+                        "stack-sm": "4px",
+                        "stack-md": "12px",
+                        "gutter": "16px",
+                        "unit": "8px",
+                        "section-gap": "40px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "30px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-panel {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .video-container {
+            aspect-ratio: 16/9;
+            background-color: #000;
+        }
+        .progress-bar-bg {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: #adc6ff; /* Electric Blue Accent */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        .live-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-3xl border-b border-on-surface/10 flex justify-between items-center px-margin-mobile h-16">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform hover:opacity-80 transition-opacity text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-display text-headline-md text-primary tracking-tight">AUDY Eventos</h1>
+</div>
+<button class="active:scale-95 transition-transform hover:opacity-80 transition-opacity text-primary">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-16 pb-20">
+<!-- Video Player Section -->
+<section class="relative w-full overflow-hidden">
+<div class="video-container relative group">
+<!-- Video Source Placeholder -->
+<img alt="Ministerio JAYAMARA Performance" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLugPxhxzbEj8SonTZuFYr2TOU3feXhbw_W0QWhr8p3C348ZC8DQRzDPweQNQ5px59hWrjuoKrh2WKZu5RDlEr2q5BPl9vbiJAAbWcXd_Oh3W88CyZeXq2gySvqlTspjelixYhFdxBTotjQLVZd_W5b52l3eoxcz-_N2LLC1RkhMtOP9Ov-oFuQxOD3q7aeX0UOXMybXBKbPbNInEeWeR9YBoeO5thzmJ-W_rHwZ05hyDa8Bv1Urxksiisc">
+<!-- Overlay Controls (Auto-hide simulated) -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 flex flex-col justify-between p-4 opacity-100 group-hover:opacity-100 transition-opacity duration-300">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="bg-error px-2 py-0.5 rounded-sm font-label-sm text-label-sm text-on-error flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-white live-pulse"></span>
+                                EN VIVO
+                            </span>
+<span class="bg-black/40 backdrop-blur-md px-2 py-0.5 rounded-sm font-label-sm text-label-sm text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="visibility">visibility</span>
+                                2.4k
+                            </span>
+</div>
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="fullscreen">fullscreen</span>
+</button>
+</div>
+<!-- Bottom Controls -->
+<div class="space-y-3">
+<div class="progress-bar-bg w-full relative">
+<div class="progress-bar-fill w-3/4"></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4 text-white">
+<button class="active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="pause">pause</span>
+</button>
+<button class="active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="volume_up">volume_up</span>
+</button>
+<span class="font-label-sm text-label-sm">42:15 / 1:30:00</span>
+</div>
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Event Information -->
+<section class="px-margin-mobile mt-stack-lg">
+<div class="flex flex-col gap-stack-sm">
+<h2 class="font-headline-md text-headline-md-mobile text-on-background">Ministerio JAYAMARA desde Oruro</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Concierto Virtual • Especial de Aniversario</p>
+</div>
+<!-- Interaction Row -->
+
+<!-- Details Card (Glassmorphism) -->
+
+<div class="mt-stack-lg flex flex-col gap-stack-md">
+    <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Ver en otras plataformas</p>
+    <div class="flex gap-4"><a href="#" class="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl bg-black hover:opacity-80 transition-opacity active:scale-95 shadow-[0_0_15px_rgba(0,242,234,0.3)]" aria-label="TikTok"><span class="material-symbols-outlined !text-[28px]" style="color: #00f2ea; text-shadow: 2px 0 #ff0050;" data-icon="music_note">music_note</span><span class="text-label-sm font-label-sm text-white">TikTok</span></a><a href="#" class="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl bg-[#FF0000] hover:opacity-80 transition-opacity active:scale-95 shadow-[0_0_15px_rgba(255,0,0,0.3)]" aria-label="YouTube"><span class="material-symbols-outlined !text-[28px] text-white" data-icon="play_circle">play_circle</span><span class="text-label-sm font-label-sm text-white">YouTube</span></a><a href="#" class="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl bg-[#1877F2] hover:opacity-80 transition-opacity active:scale-95 shadow-[0_0_15px_rgba(24,119,242,0.3)]" aria-label="Facebook"><svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg><span class="text-label-sm font-label-sm text-white">Facebook</span></a></div>
+</div></section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-background/60 backdrop-blur-3xl border-t border-on-surface/10 flex justify-around items-center h-20 px-4">
+<!-- Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Inicio</span>
+</a>
+<!-- Eventos (Active) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="font-label-sm text-label-sm">Eventos</span>
+</a>
+<!-- Tickets -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-label-sm text-label-sm">Tickets</span>
+</a>
+<!-- Perfil -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Perfil</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction: Toggle Like state
+        const likeBtn = document.querySelector('button:has(span[data-icon="favorite"])');
+        let liked = true;
+        
+        likeBtn.addEventListener('click', () => {
+            liked = !liked;
+            const icon = likeBtn.querySelector('span');
+            if (liked) {
+                icon.style.fontVariationSettings = "'FILL' 1";
+                likeBtn.classList.remove('bg-surface-container');
+                likeBtn.classList.add('bg-primary', 'text-on-primary');
+            } else {
+                icon.style.fontVariationSettings = "'FILL' 0";
+                likeBtn.classList.add('bg-surface-container');
+                likeBtn.classList.remove('bg-primary', 'text-on-primary');
+            }
+        });
+
+        // Simple visibility toggle for video controls
+        const videoContainer = document.querySelector('.video-container');
+        const overlay = videoContainer.querySelector('.absolute.inset-0');
+        let timer;
+
+        videoContainer.addEventListener('mousemove', () => {
+            overlay.style.opacity = '1';
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                overlay.style.opacity = '0';
+            }, 3000);
+        });
+
+        videoContainer.addEventListener('touchstart', () => {
+            overlay.style.opacity = '1';
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                overlay.style.opacity = '0';
+            }, 3000);
+        });
+    </script>
+
+
+</body></html>

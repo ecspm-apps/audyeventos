@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AUDY Eventos - En Vivo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-panel {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .video-gradient {
+            background: linear-gradient(0deg, rgba(19, 19, 19, 1) 0%, rgba(19, 19, 19, 0) 100%);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .live-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#d1bcff",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed": "#e9ddff",
+                        "on-surface-variant": "#c1c6d7",
+                        "outline-variant": "#414755",
+                        "on-primary-fixed-variant": "#004493",
+                        "surface-container-highest": "#353534",
+                        "on-secondary-fixed-variant": "#5700c9",
+                        "on-tertiary-container": "#4c1a00",
+                        "surface-container": "#201f1f",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed": "#351000",
+                        "tertiary-fixed": "#ffdbcc",
+                        "primary": "#adc6ff",
+                        "surface-tint": "#adc6ff",
+                        "on-tertiary-fixed-variant": "#7c2e00",
+                        "on-primary-fixed": "#001a41",
+                        "on-primary-container": "#00285c",
+                        "on-tertiary": "#571e00",
+                        "inverse-primary": "#005bc1",
+                        "primary-fixed": "#d8e2ff",
+                        "on-error": "#690005",
+                        "on-background": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "outline": "#8b90a0",
+                        "surface-container-high": "#2a2a2a",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary": "#002e69",
+                        "tertiary-container": "#ef6719",
+                        "on-secondary-container": "#ddcdff",
+                        "background": "#131313",
+                        "on-secondary": "#3c0090",
+                        "surface-dim": "#131313",
+                        "surface": "#131313",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-fixed-dim": "#ffb595",
+                        "tertiary": "#ffb595",
+                        "surface-variant": "#353534",
+                        "primary-container": "#4b8eff",
+                        "surface-bright": "#393939",
+                        "on-secondary-fixed": "#23005b",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#7000ff",
+                        "on-surface": "#e5e2e1",
+                        "secondary-fixed-dim": "#d1bcff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "stack-lg": "24px",
+                        "unit": "8px",
+                        "stack-sm": "4px",
+                        "section-gap": "40px",
+                        "gutter": "16px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "30px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-3xl border-b border-on-surface/10 flex justify-between items-center px-margin-mobile h-16">
+<div class="flex items-center gap-stack-md">
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display text-headline-md text-primary tracking-tight">AUDY Eventos</h1>
+</div>
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-grow pt-16 pb-20 flex flex-col overflow-hidden">
+<!-- Video Player Section (16:9) -->
+<section class="relative w-full aspect-video bg-black overflow-hidden group">
+<img alt="Live Stream" class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida/AP1WRLtZb_8hbwlFDDDGE9vYPkFilPZFcDNzlhpjaett_MhU8bloSmuN4ZtuLOT7Nx06F2-ovA0di-7D5JShMWhJHmY9cM7XnKs-oVSBMCXmiVYUmcfGSCgODpuk0__0QD3WyM-wQo29u4K-mijQg56t84yoTkeE3S5Cy6cmsNPPtKR_9TeJ4iXH4270j3Ol3waugYE4mMf7sJlQgm3cbvnYpCBbrFRihnzlTtA0H_DnRq2fq82M7tLQiNBEyKY"/>
+<!-- Video Overlay Controls (Simulated) -->
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+<button class="w-16 h-16 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<!-- Video Progress Bar -->
+<div class="absolute bottom-0 left-0 w-full px-4 pb-2">
+<div class="h-1 bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full shadow-[0_0_10px_rgba(173,198,255,0.5)]"></div>
+</div>
+</div>
+<!-- Live Badge Overlay -->
+<div class="absolute top-4 left-4 flex items-center gap-2 px-3 py-1 bg-error rounded-full text-on-error font-label-sm text-label-sm live-pulse">
+<span class="w-2 h-2 rounded-full bg-white"></span>
+                EN VIVO
+            </div>
+<div class="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 bg-black/40 backdrop-blur-md rounded-lg text-white font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                1.4k
+            </div>
+</section>
+<!-- Event Information -->
+<section class="px-margin-mobile py-stack-md shrink-0">
+<div class="flex justify-between items-start gap-4">
+<div>
+<h2 class="font-headline-md text-headline-md-mobile text-on-surface">Ministerio JAYAMARA desde Oruro</h2>
+<p class="font-body-md text-on-surface-variant">Concierto Virtual • Especial de Aniversario</p>
+</div>
+<button class="p-2 rounded-full border border-outline/20 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary">share</span>
+</button>
+</div>
+</section>
+<!-- Chat Section -->
+<section class="flex-grow flex flex-col mx-margin-mobile mb-4 rounded-xl glass-panel overflow-hidden">
+<div class="px-4 py-3 border-b border-white/10 flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">forum</span>
+                    Chat en vivo
+                </span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">expand_more</span>
+</div>
+<!-- Chat Messages -->
+<div class="flex-grow p-4 overflow-y-auto space-y-stack-md hide-scrollbar" id="chat-container">
+<!-- Message 1 -->
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] border border-white/10">
+<span class="material-symbols-outlined text-[16px]">person</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Carlos Mendez</span>
+<p class="text-body-md text-on-surface">¡Qué increíble sonido! Saludos desde La Paz 🇧🇴</p>
+</div>
+</div>
+<!-- Message 2 -->
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-[10px] border border-primary/20">
+<span class="material-symbols-outlined text-[16px] text-primary">face</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-primary">Admin_AUDY</span>
+<p class="text-body-md text-on-surface">¡Gracias por conectarse! No olviden compartir el evento.</p>
+</div>
+</div>
+<!-- Message 3 -->
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] border border-white/10">
+<span class="material-symbols-outlined text-[16px]">person</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Elena Quispe</span>
+<p class="text-body-md text-on-surface">Jayamara siempre sorprendiendo con su talento 🙌</p>
+</div>
+</div>
+<!-- Message 4 -->
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] border border-white/10">
+<span class="material-symbols-outlined text-[16px]">person</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Roberto T.</span>
+<p class="text-body-md text-on-surface">La mejor música nacional en vivo.</p>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-4 border-t border-white/10">
+<form class="flex items-center gap-2" id="chat-form">
+<div class="flex-grow relative">
+<input class="w-full bg-surface-container rounded-full px-4 py-2 text-body-md border border-outline/20 focus:border-primary focus:ring-0 transition-all outline-none" placeholder="Escribe un mensaje..." type="text"/>
+</div>
+<button class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center active:scale-90 transition-transform" type="submit">
+<span class="material-symbols-outlined">send</span>
+</button>
+</form>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-background/60 backdrop-blur-3xl border-t border-on-surface/10 flex justify-around items-center h-20 px-4">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold hover:text-primary/80 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="font-label-sm text-label-sm">Eventos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-label-sm text-label-sm">Tickets</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Perfil</span>
+</a>
+</nav>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatContainer = document.getElementById('chat-container');
+            const chatForm = document.getElementById('chat-form');
+            const input = chatForm.querySelector('input');
+
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (input.value.trim() === '') return;
+
+                const userMsg = input.value;
+                input.value = '';
+
+                // Create new message element
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'flex items-start gap-3 opacity-0 translate-y-2 transition-all duration-300';
+                msgDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-[10px] border border-white/10">
+                        <span class="material-symbols-outlined text-[16px] text-on-secondary-container">account_circle</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-label-sm font-label-sm text-secondary">Tú</span>
+                        <p class="text-body-md text-on-surface">${userMsg}</p>
+                    </div>
+                `;
+
+                chatContainer.appendChild(msgDiv);
+                
+                // Animate entrance
+                setTimeout(() => {
+                    msgDiv.classList.remove('opacity-0', 'translate-y-2');
+                }, 10);
+
+                // Scroll to bottom
+                chatContainer.scrollTo({
+                    top: chatContainer.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Simulate incoming message after a delay
+            setTimeout(() => {
+                const incomingMsg = document.createElement('div');
+                incomingMsg.className = 'flex items-start gap-3 opacity-0 translate-y-2 transition-all duration-500';
+                incomingMsg.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-[10px] border border-white/10">
+                        <span class="material-symbols-outlined text-[16px]">person</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-label-sm font-label-sm text-on-surface-variant">Maria Gonzales</span>
+                        <p class="text-body-md text-on-surface">¡Qué emoción verlos en vivo! ✨✨</p>
+                    </div>
+                `;
+                chatContainer.appendChild(incomingMsg);
+                setTimeout(() => incomingMsg.classList.remove('opacity-0', 'translate-y-2'), 100);
+            }, 3000);
+        });
+    </script>
+</body></html>

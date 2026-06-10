@@ -1,0 +1,301 @@
+<!DOCTYPE html><html class="dark" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#ffb595",
+                    "primary-fixed-dim": "#adc6ff",
+                    "surface-bright": "#393939",
+                    "on-surface": "#e5e2e1",
+                    "primary": "#adc6ff",
+                    "on-primary-container": "#00285c",
+                    "error": "#ffb4ab",
+                    "on-background": "#e5e2e1",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface": "#131313",
+                    "surface-container": "#201f1f",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#351000",
+                    "surface-variant": "#353534",
+                    "surface-container-high": "#2a2a2a",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#e9ddff",
+                    "on-surface-variant": "#c1c6d7",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "primary-container": "#4b8eff",
+                    "surface-dim": "#131313",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "on-secondary-container": "#ddcdff",
+                    "on-primary-fixed": "#001a41",
+                    "on-error": "#690005",
+                    "background": "#131313",
+                    "surface-tint": "#adc6ff",
+                    "secondary-fixed-dim": "#d1bcff",
+                    "secondary-container": "#7000ff",
+                    "on-secondary-fixed": "#23005b",
+                    "secondary": "#d1bcff",
+                    "outline-variant": "#414755",
+                    "outline": "#8b90a0",
+                    "inverse-surface": "#e5e2e1",
+                    "on-secondary": "#3c0090",
+                    "on-tertiary-container": "#4c1a00",
+                    "error-container": "#93000a",
+                    "inverse-on-surface": "#313030",
+                    "tertiary-fixed": "#ffdbcc",
+                    "surface-container-low": "#1c1b1b",
+                    "tertiary-container": "#ef6719",
+                    "on-primary": "#002e69",
+                    "on-secondary-fixed-variant": "#5700c9",
+                    "surface-container-highest": "#353534",
+                    "on-tertiary": "#571e00",
+                    "inverse-primary": "#005bc1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "4px",
+                    "margin-mobile": "20px",
+                    "section-gap": "40px",
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "unit": "8px",
+                    "stack-md": "12px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "30px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-glow {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-3xl border-b border-white/10 flex items-center justify-between px-margin-mobile h-16 w-full" style="transition: transform 0.3s ease-in-out;">
+<button class="active:scale-95 transition-transform hover:opacity-80 transition-opacity flex items-center">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">AUDY Eventos</h1>
+<button class="active:scale-95 transition-transform hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-primary" data-icon="search">search</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 px-margin-mobile max-w-md mx-auto">
+<!-- Section Header -->
+<div class="mb-stack-lg pb-3">
+
+<div class="flex flex-col gap-2">
+  <h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface tracking-[0.05em] uppercase">Próximos eventos en vivo</h2>
+  <div class="h-1 w-12 bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- Event List -->
+<section class="space-y-gutter">
+<!-- Event Card 1 -->
+<article class="bg-surface-container rounded-xl overflow-hidden glass-glow group active:scale-[0.98] transition-all duration-300">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover" data-alt="A cinematic medium shot of a traditional Andean music ensemble performing on a dark stage illuminated by dramatic electric blue spotlights. Fine mist and atmospheric haze catch the light, creating a professional glassmorphism aesthetic. The performers wear intricate, textured traditional clothing, and the mood is focused and high-fidelity, matching a premium dark theme UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC1rhrZ0wy8AavKA1wfNVs6uf22lG2FI9t_ddw2-UcZRoS4cfr2P6HviJTyTKG85m57pKud1hh9_ca9zui5VaUyATFONCbezocSYwE409SPBlveNR3Lrc9YGSFJfnciwoXbYNLsm-khQx8vMasB3WVD--g3MMsUFAQb4g67FdG4s40FuPyLKCtkEzBAivZk8zh4tL9m_UObCkO3sPnCL6tVgGphxcxmGKmkPqR_5zylGpI1kK0onAhCv0BW9jKETSDveWjaQRo50Q">
+<div class="absolute top-3 right-3 bg-amber-400 text-black px-3 py-1 rounded-full font-label-sm text-label-sm shadow-lg flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                        LIBRE
+                    </div>
+</div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Concierto Folklórico</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</div>
+<p class="font-label-md text-label-md text-primary mb-3">Ministerio JAYAMARA</p>
+<div class="flex items-center gap-4 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+<span class="">24 Mayo</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span>
+<span class="">20:00 PM</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Event Card 2 -->
+<article class="bg-surface-container rounded-xl overflow-hidden glass-glow group active:scale-[0.98] transition-all duration-300">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover" data-alt="A sophisticated theatrical stage scene with two actors in deep conversation, framed by long dramatic shadows and vibrant blue rim lighting. The background is a deep charcoal minimalist set design, conveying a cinematic and professional media experience. High contrast highlights and professional photography style align with a minimalist dark mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGWI-Daomyl6oAre44ZOEa1zt1PLK8J6BUhSsFhCMDdRWHIm2zFGkyZJprm3CGjLe_42QsWDb5fJvSu0cJ1Z0BnrpnhjUScB3t0femdJ7C-bWYfJDX8UtZ6RSgKkm5aEHfO6lKL-Gxj9cRIzRTghCAsUFhUU9MIOhF1AtyOlv7yBju4YCQNwZPHhi7qMwZD1HhvCFVAlM32KeMLLNyi2Mu1vhvzKD4D5y0padC5Ue4sfuD2JU36lfBTFFlQ8aZYIOrSKDpYhyFIzQ">
+<div class="absolute top-3 right-3 bg-purple-700 text-white px-3 py-1 rounded-full font-label-sm text-label-sm shadow-lg flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">lock</span>
+                        EXCLUSIVO
+                    </div>
+</div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Teatro en Vivo</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</div>
+<p class="font-label-md text-label-md text-primary mb-3">Compañía El Telón</p>
+<div class="flex items-center gap-4 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+<span class="">28 Mayo</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span>
+<span class="">19:30 PM</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Event Card 3 -->
+<article class="bg-surface-container rounded-xl overflow-hidden glass-glow group active:scale-[0.98] transition-all duration-300">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover" data-alt="A wide angle shot of a professional choir performing in a modern cathedral with minimalist architecture. The lighting is cool-toned with electric blue accents illuminating the singers from behind. The atmosphere is serene and technically precise, captured with high-fidelity camera equipment for a premium streaming service aesthetic. Deep blacks and translucent textures dominate the composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpj8GmhdSaqLalD13amswdDNCAZEQflU5X697KQ4zlWvm54ySDrkrX53tz5-N6TSMc00qEq3sNaI-9_M1g5sLVbh56sj9iRmcVZUpO4KI5gmcvbMBKiEXQBMpJXt-UTyoeBjD1QMke8Km3dpnUYPS7_7ovrB5g-lQTtnEANlqf6JxSeVtAkj1e73p6qqvRRgyRDLOio0JiBwMI1dhSBNYU3RZmP8g-bqjCy_1PlIz1SoU3Eza2yfJFGKbAW0uyEEUx9oguy3msIe4">
+<div class="absolute top-3 right-3 bg-amber-400 text-black px-3 py-1 rounded-full font-label-sm text-label-sm shadow-lg flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                        LIBRE
+                    </div>
+</div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface">Gala Coral Navideña</h3>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</div>
+<p class="font-label-md text-label-md text-primary mb-3">Coro Polifónico Central</p>
+<div class="flex items-center gap-4 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+<span class="">02 Junio</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span>
+<span class="">18:00 PM</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Event Card 4 -->
+<article class="bg-surface-container rounded-xl overflow-hidden glass-glow group active:scale-[0.98] transition-all duration-300">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of hands playing a grand piano in a dim, elegant studio. The scene features a shallow depth of field with soft blue light reflecting off the polished black wood. The mood is calm and focused on technical precision, perfect for a high-end audio-visual platform. Minimalist charcoal surroundings enhance the cinematic and professional feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW10Ai1HZC3k5v_NOqUwZ1eE7f4D_WJ2lb2bAOg6ClyfadQ0I6QALldGHJH0zZjPbF5S-epKoN8YQA4CHkdA-nd-Xm7D_zp46W4h4EQLOhFTJlFsEyDo4Qi8TohY4Uw0FrtRCiH1GVEZLdMPmhfJ4sjtRMlOoSoRE7NyJ93rq75b03bBsTx6Rls5MyjefVcWSc0nAeskiwusMxymGoLjNkXlkRZBU3ylLH1OLdcNqumHxPQ9AP6IV5LU2MI1qjncRMGcUmv3lPVWc">
+<div class="absolute top-3 right-3 bg-purple-700 text-white px-3 py-1 rounded-full font-label-sm text-label-sm shadow-lg flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">lock</span>
+                        EXCLUSIVO
+                    </div>
+</div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-1"><h3 class="font-headline-md text-headline-md text-on-surface">Recital de Piano</h3><span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span></div>
+<p class="font-label-md text-label-md text-primary mb-3">Academia de Música Clásica</p>
+<div class="flex items-center gap-4 text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+<span class="">15 Junio</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span>
+<span class="">21:00 PM</span>
+</div>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-[#131313] border-t border-white/10 flex justify-around items-center px-4 pb-8 pt-3">
+<!-- Eventos (Active) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold hover:text-primary/80 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="event" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-label-sm text-label-sm">Eventos</span>
+</a>
+<!-- Boletos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-label-sm text-label-sm">Boletos</span>
+</a>
+<!-- Favoritos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="favorite">favorite</span>
+<span class="font-label-sm text-label-sm">Favoritos</span>
+</a>
+<!-- Perfil -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Perfil</span>
+</a>
+</nav>
+<!-- Micro-interactions Script -->
+<script>
+        // Simple click feedback for cards
+        document.querySelectorAll('article').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.add('ring-2', 'ring-primary/40');
+                setTimeout(() => card.classList.remove('ring-2', 'ring-primary/40'), 200);
+            });
+        });
+
+        // Hide app bar on scroll down, show on scroll up
+        let lastScroll = 0;
+        const appBar = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= 0) {
+                appBar.classList.remove('-translate-y-full');
+                return;
+            }
+            if (currentScroll > lastScroll && !appBar.classList.contains('-translate-y-full')) {
+                // Scroll down
+                appBar.classList.add('-translate-y-full');
+            } else if (currentScroll < lastScroll && appBar.classList.contains('-translate-y-full')) {
+                // Scroll up
+                appBar.classList.remove('-translate-y-full');
+            }
+            lastScroll = currentScroll;
+        });
+        
+        appBar.style.transition = 'transform 0.3s ease-in-out';
+    </script>
+
+
+</body></html>

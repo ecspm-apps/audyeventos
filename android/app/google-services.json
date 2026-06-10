@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "280089579298",
+    "firebase_url": "https://audy-eventos-default-rtdb.firebaseio.com",
+    "project_id": "audy-eventos",
+    "storage_bucket": "audy-eventos.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280089579298:android:78048cfb6db236fac15f7b",
+        "android_client_info": {
+          "package_name": "com.audyeventos.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk19Ji8gQ8Do3618ygEJ3wKrKtzdnylcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
