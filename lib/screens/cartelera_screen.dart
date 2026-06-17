@@ -53,12 +53,7 @@ class CarteleraScreen extends StatelessWidget {
 
           final rawEventos = snapshot.data ?? [];
           final now = DateTime.now();
-          final eventos = rawEventos.where((evento) {
-            final eventTime = Evento.parseFechaHora(evento.fechaHora);
-            if (eventTime == null) return true;
-            final isFinished = now.isAfter(eventTime) && evento.finStream;
-            return !isFinished;
-          }).toList()
+          final eventos = rawEventos.where((evento) => evento.esCartelera(now)).toList()
             ..sort((a, b) {
               final timeA = Evento.parseFechaHora(a.fechaHora) ?? DateTime.fromMillisecondsSinceEpoch(0);
               final timeB = Evento.parseFechaHora(b.fechaHora) ?? DateTime.fromMillisecondsSinceEpoch(0);
@@ -93,7 +88,7 @@ class CarteleraScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Próximos eventos en vivo',
+                  'Próximos eventos',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 28,

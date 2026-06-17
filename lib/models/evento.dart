@@ -12,6 +12,7 @@ class Evento {
   final String tiktokUrl;
   final String youtubeUrl;
   final bool finStream;
+  final bool recientes;
 
   Evento({
     required this.id,
@@ -27,6 +28,7 @@ class Evento {
     this.tiktokUrl = '',
     this.youtubeUrl = '',
     this.finStream = false,
+    this.recientes = false,
   });
 
   factory Evento.fromMap(String id, Map<dynamic, dynamic> map) {
@@ -45,7 +47,16 @@ class Evento {
       tiktokUrl: redesSociales?['tiktok'] ?? '',
       youtubeUrl: redesSociales?['youtube'] ?? '',
       finStream: map['fin_stream'] ?? false,
+      recientes: map['recientes'] ?? false,
     );
+  }
+
+  bool esReciente(DateTime now) {
+    return finStream && recientes;
+  }
+
+  bool esCartelera(DateTime now) {
+    return !finStream;
   }
 
   static DateTime? parseFechaHora(String str) {

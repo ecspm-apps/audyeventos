@@ -8,10 +8,29 @@ import 'reproductor_ingreso_nombre_screen.dart';
 import '../services/database_service.dart';
 import '../models/evento.dart';
 
-class RecientesScreen extends StatelessWidget {
-  RecientesScreen({super.key});
+class RecientesScreen extends StatefulWidget {
+  const RecientesScreen({super.key});
 
+  @override
+  State<RecientesScreen> createState() => _RecientesScreenState();
+}
+
+class _RecientesScreenState extends State<RecientesScreen> {
   final DatabaseService _dbService = DatabaseService();
+  final TextEditingController _searchController = TextEditingController();
+  late final Stream<List<Evento>> _eventosStream;
+
+  @override
+  void initState() {
+    super.initState();
+    _eventosStream = _dbService.getEventosStream();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +66,7 @@ class RecientesScreen extends StatelessWidget {
         actions: const [],
       ),
       body: StreamBuilder<List<Evento>>(
-        stream: _dbService.getEventosStream(),
+        stream: _eventosStream,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator(color: Color(0xFFADC6FF)));
@@ -55,12 +74,13 @@ class RecientesScreen extends StatelessWidget {
 
           final rawEventos = snapshot.data ?? [];
           final now = DateTime.now();
-          final eventos = rawEventos.where((evento) {
-            final eventTime = Evento.parseFechaHora(evento.fechaHora);
-            if (eventTime == null) return false;
-            final expirationTime = eventTime.add(const Duration(days: 15));
-            final isFinished = now.isAfter(eventTime) && evento.finStream;
-            return isFinished && now.isBefore(expirationTime);
+          final recientesEventos = rawEventos.where((evento) => evento.esReciente(now)).toList();
+
+          final query = _searchController.text.toLowerCase().trim();
+          final eventos = recientesEventos.where((evento) {
+            return query.isEmpty ||
+                evento.titulo.toLowerCase().contains(query) ||
+                evento.tipo.toLowerCase().contains(query);
           }).toList()
             ..sort((a, b) {
               final timeA = Evento.parseFechaHora(a.fechaHora) ?? DateTime.fromMillisecondsSinceEpoch(0);
@@ -68,57 +88,59 @@ class RecientesScreen extends StatelessWidget {
               return timeB.compareTo(timeA); // Más recientes primero
             });
 
-          if (eventos.isEmpty) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/logo.png', height: 120),
-                  const SizedBox(height: 24),
-                  const Text(
-                    'No hay eventos recientes',
-                    style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 12),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Text(
-                      'Por ahora no hay transmisiones pasadas disponibles. Vuelve más tarde.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Color(0xFF8B90A0), fontSize: 14),
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
+                child: TextField(
+                  controller: _searchController,
+                  style: const TextStyle(color: Colors.white, fontSize: 14),
+                  decoration: InputDecoration(
+                    hintText: 'Buscar en recientes...',
+                    hintStyle: const TextStyle(color: Color(0xFF8B90A0), fontSize: 14),
+                    prefixIcon: const Icon(Icons.search, color: Color(0xFFADC6FF), size: 18),
+                    prefixIconConstraints: const BoxConstraints(minWidth: 40, minHeight: 24),
+                    suffixIcon: _searchController.text.isNotEmpty
+                        ? GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _searchController.clear();
+                              });
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 12),
+                              child: Icon(Icons.clear, color: Color(0xFF8B90A0), size: 18),
+                            ),
+                          )
+                        : null,
+                    suffixIconConstraints: const BoxConstraints(minWidth: 40, minHeight: 24),
+                    filled: true,
+                    fillColor: const Color(0xFF201F1F),
+                    isDense: true,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Color(0xFFADC6FF), width: 1),
                     ),
                   ),
-                ],
+                  onChanged: (value) {
+                    setState(() {});
+                  },
+                ),
               ),
-            );
-          }
-
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Eventos recientes',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-                Container(
-                  height: 4,
-                  width: 48,
-                  color: const Color(0xFFADC6FF),
-                  margin: const EdgeInsets.only(top: 8, bottom: 24),
-                ),
-                ...eventos.map((evento) => Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: _buildEventCard(context, evento),
-                )),
-              ],
-            ),
+              const Divider(color: Color(0x1AFFFFFF), thickness: 1, height: 1),
+              Expanded(
+                child: _buildContent(context, recientesEventos, eventos, query),
+              ),
+            ],
           );
         },
       ),
@@ -138,6 +160,73 @@ class RecientesScreen extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context, List<Evento> recientesEventos, List<Evento> eventos, String query) {
+    if (recientesEventos.isEmpty) {
+      return Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/logo.png', height: 120),
+              const SizedBox(height: 24),
+              const Text(
+                'No hay eventos recientes',
+                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Text(
+                  'Por ahora no hay transmisiones pasadas disponibles. Vuelve más tarde.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Color(0xFF8B90A0), fontSize: 14),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (eventos.isEmpty) {
+      return Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.search_off, size: 64, color: Color(0xFF8B90A0)),
+              const SizedBox(height: 16),
+              const Text(
+                'No se encontraron resultados',
+                style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'No hay eventos que coincidan con "$query"',
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Color(0xFF8B90A0), fontSize: 14),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.all(20),
+      itemCount: eventos.length,
+      itemBuilder: (context, index) {
+        final evento = eventos[index];
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: _buildEventCard(context, evento),
+        );
+      },
     );
   }
 
