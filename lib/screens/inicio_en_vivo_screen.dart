@@ -53,7 +53,7 @@ class InicioEnVivoScreen extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
           ),
-          Container(decoration: const BoxDecoration(gradient: LinearGradient(begin: Alignment.bottomCenter, end: Alignment.topCenter, colors: [Colors.black, Colors.transparent]))),
+
           Center(
             child: Container(
               padding: const EdgeInsets.all(20),
@@ -62,20 +62,39 @@ class InicioEnVivoScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 100,
-            left: 20,
-            right: 20,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(color: Colors.red.withOpacity(0.8), borderRadius: BorderRadius.circular(8)),
-                  child: const Row(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.circle, size: 10, color: Colors.white), SizedBox(width: 6), Text('EN VIVO', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold))]),
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                bottom: 100,
+                top: 60,
+              ),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    Colors.black,
+                    Colors.black.withOpacity(0.05),
+                  ],
                 ),
-                const SizedBox(height: 10),
-                const Text('Ministerio JAYAMARA desde Oruro', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
-              ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    decoration: BoxDecoration(color: Colors.red.withOpacity(0.8), borderRadius: BorderRadius.circular(8)),
+                    child: const Row(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.circle, size: 10, color: Colors.white), SizedBox(width: 6), Text('EN VIVO', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold))]),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text('Ministerio JAYAMARA desde Oruro', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+                ],
+              ),
             ),
           ),
         ],

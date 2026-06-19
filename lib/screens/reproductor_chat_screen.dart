@@ -1042,9 +1042,9 @@ class _ReproductorChatScreenState extends State<ReproductorChatScreen> {
                     loadingText,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      color: Colors.white70,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                      color: Colors.amber,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

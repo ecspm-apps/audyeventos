@@ -136,123 +136,129 @@ class InicioInmersivoScreen extends StatelessWidget {
                   },
                 ),
               ),
-              // Dark gradient overlay for text legibility
-              Positioned.fill(
+
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
                 child: Container(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                    bottom: 100,
+                    top: 60,
+                  ),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                       colors: [
-                        Colors.black.withOpacity(0.9),
-                        Colors.transparent,
+                        Colors.black.withOpacity(1),                    // 0% - inferior oscuro
+                        Colors.black.withOpacity(0.8),                    // 50% - sigue oscuro
+                        Colors.black.withOpacity(0.7),   // 75% - comienza a aclarar
+                        Colors.black.withOpacity(0),   // 100% - superior claro
                       ],
                     ),
                   ),
-                ),
-              ),
-              // Meta Content
-              Positioned(
-                bottom: 100,
-                left: 20,
-                right: 20,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            if (isFree) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ReproductorChatScreen(isExclusive: false, evento: topEvento),
-                                ),
-                              );
-                            } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ReproductorIngresoNombreScreen(evento: topEvento),
-                                ),
-                              );
-                            }
-                          },
-                          child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              if (isFree) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ReproductorChatScreen(isExclusive: false, evento: topEvento),
+                                  ),
+                                );
+                              } else {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ReproductorIngresoNombreScreen(evento: topEvento),
+                                  ),
+                                );
+                              }
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: isFree ? Colors.amber : const Color(0xFF6A0DAD),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    isFree ? Icons.play_arrow : Icons.lock,
+                                    size: 20,
+                                    color: isFree ? Colors.black : Colors.white,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    isFree ? 'INICIAR' : 'EXCLUSIVO',
+                                    style: TextStyle(
+                                      color: isFree ? Colors.black : Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Container(
                             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                             decoration: BoxDecoration(
-                              color: isFree ? Colors.amber : const Color(0xFF6A0DAD),
+                              color: const Color(0xFF201F1F).withOpacity(0.9),
                               borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.white.withOpacity(0.1)),
                             ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  isFree ? Icons.play_arrow : Icons.lock,
-                                  size: 20,
-                                  color: isFree ? Colors.black : Colors.white,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  isFree ? 'INICIAR' : 'EXCLUSIVO',
-                                  style: TextStyle(
-                                    color: isFree ? Colors.black : Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
+                            child: Text(
+                              dateTimeFormatted,
+                              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                             ),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF201F1F).withOpacity(0.9),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.white.withOpacity(0.1)),
-                          ),
-                          child: Text(
-                            dateTimeFormatted,
-                            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      topEvento.tipo.toUpperCase(),
-                      style: const TextStyle(
-                        color: Color(0xFFADC6FF),
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
-                        fontSize: 12,
-                        shadows: [
-                          Shadow(
-                            blurRadius: 4.0,
-                            color: Colors.black,
-                            offset: Offset(1.0, 1.0),
                           ),
                         ],
                       ),
-                    ),
-                    Text(
-                      topEvento.titulo,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        shadows: [
-                          Shadow(
-                            blurRadius: 4.0,
-                            color: Colors.black,
-                            offset: Offset(1.0, 1.0),
-                          ),
-                        ],
+                      const SizedBox(height: 12),
+                      Text(
+                        topEvento.tipo.toUpperCase(),
+                        style: const TextStyle(
+                          color: Color(0xFFADC6FF),
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                          fontSize: 12,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 4.0,
+                              color: Colors.black,
+                              offset: Offset(1.0, 1.0),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      Text(
+                        topEvento.titulo,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 4.0,
+                              color: Colors.black,
+                              offset: Offset(1.0, 1.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
